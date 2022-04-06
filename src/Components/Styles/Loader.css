@@ -1,0 +1,8 @@
+.loading {
+    color: var(--green-500);
+}
+
+.loading span {
+    color: var(--insta-yellow);
+}
+

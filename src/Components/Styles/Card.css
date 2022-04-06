@@ -1,0 +1,51 @@
+.instafresh-card {
+    width: 15rem;
+}
+
+.instafresh-card .add-to-cart-btn {
+
+    background-color: rgb(255 225 65);
+    color: black;
+    margin-left: 1rem;
+}
+
+
+.instafresh-card .add-to-cart-btn:hover {
+
+    background-color: var(--yellow-500);
+}
+
+.instafresh-card .discount-badge {
+    font-size: 0.1rem;
+}
+
+.item-price-detail p {
+    color: var(--black);
+}
+
+.instafresh-card .discount {
+    padding: 0.25rem;
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.instafresh-card .card-icon {
+    color: var(--red-500);
+}
+
+.card-icon:hover {
+    background-color: var(--red-200);
+}
+
+.product-rating{
+    width: fit-content;
+    padding: 0.5rem;
+    background-color: inherit;
+    color: var(--black);
+    font-size: 1rem;
+}
+
+.product-rating i{
+    color: var(--yellow-500);
+}
+

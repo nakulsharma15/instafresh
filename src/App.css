@@ -6,7 +6,52 @@
     --insta-yellow: #ffe341;
 }
 
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-sb-c {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
+}
+
+.stick-bottom {
+    min-height: 100vh;
+}
+
+.product-list {
+    background-color: var(--white);
+}
+
+.products {
+    max-width: 80%;
+    flex-wrap: wrap;
+}
+
+.products-length {
+    color: var(--green-500);
+}
+
+.productList-header {
+    padding: 2rem;
+ }
+
+ .productList-header h4 {
+     margin-top: 1rem;
+ }
+
+.container {
+    margin-top: 2rem;
+}
+
+input[type="checkbox"] {
+    width: max-content;
 }
 
