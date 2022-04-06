@@ -1,0 +1,112 @@
+.cart-container {
+    margin-top: 2.5rem;
+}
+
+.cart-header {
+    margin-top: 2rem;
+}
+
+.cart-horz-card {
+    max-width: 28rem;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.h-card-header {
+    gap: 0.5rem;
+}
+
+.cart-horz-card .badge-rating {
+    max-width: fit-content;
+    background-color: var(--green-500);
+    padding: 4px 8px;
+}
+
+.cart-product-info {
+    margin-top: 1.5rem;
+    width: 15rem;
+}
+
+.qty {
+    width: 2rem;
+}
+
+.price-detail {
+    width: 25rem;
+    padding: 1rem;
+    height: fit-content;
+}
+
+.price-detail-section {
+    margin-top: 1.5rem;
+}
+
+.discount {
+    color: var(--green-500);
+}
+
+.product-rating{
+    width: fit-content;
+    padding: 0.5rem;
+    color: var(--black);
+    font-size: 1rem;
+    background-color: var(--white);
+    padding: 0.25rem;
+}
+
+.product-rating i{
+    color: var(--yellow-500);
+}
+
+.cart-horz-card {
+    width: 25rem;
+}
+
+.product-info p{
+    color: var(--black);
+}
+
+.item-qty {
+    font-weight:100;
+}
+
+.remove-from-cart-btn {
+    background-color: var(--yellow-300);
+    color: var(--black);
+}
+
+.remove-from-cart-btn:hover {
+    background-color: var(--yellow-400);
+}
+
+.outline-secondary-btn {
+    color: var(--black);
+    border-color: var(--green-300);
+    font-weight: lighter;
+}
+
+.outline-secondary-btn:hover {
+    color: var(--black);
+    background-color: var(--green-300);
+}
+
+.product-qty p{
+  
+    background-color: var(--yellow-300);
+}
+
+.product-qty button{
+    padding: 1px 10px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.product-qty button:hover{
+    background-color: var(--yellow-400);
+}
+
+.product-qty span {
+    padding: 1px 10px;
+    color: var(--black);
+}
+

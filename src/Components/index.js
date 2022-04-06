@@ -5,6 +5,9 @@ import Header from "./Header";
 import Loader from "./Loader";
 import Filter from "./Filter";
 import Card from "./Card";
+import WishlistCard from "./WishlistCard";
+import CartCard from "./CartCard";
+import BillDetail from "./BillDetail";
 
 export {
     Banner,
@@ -13,5 +16,8 @@ export {
     Header,
     Loader,
     Filter,
-    Card
+    Card,
+    WishlistCard,
+    CartCard,
+    BillDetail
 }
