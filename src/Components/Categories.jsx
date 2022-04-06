@@ -1,7 +1,6 @@
 import "./Styles/Categories.css";
 import useAxios from "../utils/useAxios";
 import Loader from "./Loader";
-import React from "react";
 import { useFilter } from "../Filters/FilterContext";
 import { useNavigate } from "react-router-dom";
 

@@ -1,7 +1,5 @@
 import "./Styles/Card.css";
 
-import React from "react";
-
 export default function Card({ Item }) {
 
     return (
@@ -14,11 +12,11 @@ export default function Card({ Item }) {
 
                 <div class="card-title item-price-detail">
                     <h3>{Item.name}</h3>
-                    <p>₹{Item.price}  {!(Item.discount === 0) ? <s class="text-s">₹{Item.prevPrice}</s> : <s></s>}</p>
+                    <p>₹{Item.price}  {!(Item.discount === 0) ? <s class="text-s">₹{Item.prevPrice}</s> : null}</p>
                 </div>
 
                 <div className="discount-badge">
-                    {!(Item.discount === 0) ? <div class="discount special-badge text-overlay">{Item.discount}% off</div> : <div></div>}
+                    {!(Item.discount === 0) ? <div class="discount special-badge text-overlay">{Item.discount}% off</div> : null}
                 </div>
 
                 <div class="card-info flex-sb-c">

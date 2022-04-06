@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Filter , Footer , Header , Card } from "../Components/index.js";
 
 import "../App.css"

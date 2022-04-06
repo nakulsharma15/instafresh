@@ -5,7 +5,7 @@ const sortby =({sortBy},array)=>{
         case "LOWTOHIGH":
             return sortBy==="LOWTOHIGH"?[...array].sort((a,b)=>Number(a.price)- Number(b.price)):[...array];
         default:
-            return [...array]
+            return array;
     }
 
 }
