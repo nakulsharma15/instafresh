@@ -1,0 +1,22 @@
+.price-detail-section .striked-price {
+    padding-right: 0.4rem;
+}
+
+.price-detail-section .packaging-charge {
+
+    padding-right: 0.5rem;
+}
+
+.bill-total {
+    padding-top: 1rem;
+    border-top: 1px solid var(--black);
+}
+
+.order-btn {
+    background-color: var(--green-500);
+}
+
+.order-btn:hover {
+    background-color: var(--green-600);
+}
+

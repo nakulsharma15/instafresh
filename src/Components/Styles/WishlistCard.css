@@ -1,0 +1,26 @@
+.delete-icon {
+    right: 0px;
+    font-size: 1.5rem;
+}
+
+.delete-icon:hover {
+    background-color: var(--red-500);
+    color: var(--white);
+}
+
+.item-price-detail p {
+    color: var(--black);
+}
+
+.product-rating{
+    width: fit-content;
+    padding: 0.5rem;
+    background-color: inherit;
+    color: var(--black);
+    font-size: 1rem;
+}
+
+.product-rating i{
+    color: var(--yellow-500);
+}
+

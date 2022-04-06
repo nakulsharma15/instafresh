@@ -6,7 +6,6 @@
     --insta-yellow: #ffe341;
 }
 
-
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -45,6 +44,21 @@ body {
 
  .productList-header h4 {
      margin-top: 1rem;
+ }
+
+ .wishlist-products {
+    max-width: 100%;
+}
+
+.redirect-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--green-400);
+    border-color: transparent;
+ }
+
+ .center-heading-text {
+    text-align: center; 
+    margin: 1rem;
  }
 
 .container {
