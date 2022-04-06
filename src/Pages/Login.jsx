@@ -24,7 +24,7 @@ export default function Login() {
                     <input type="checkbox" id="remember" />
                     <label for="confirm">Remember me</label>
 
-                    <span className="signup">Don't have an account?, <Link classNameName="signup-link" to="/signup">Signup</Link></span>
+                    <span className="signup">Don't have an account?, <Link className="signup-link" to="/signup">Signup</Link></span>
                 </div>
 
                 <Link to="/"><button className="btn primary-btn" type="submit">Login</button></Link>
