@@ -61,9 +61,66 @@ body {
     margin: 1rem;
  }
 
+ .login-header {
+    margin-top: 2rem;
+}
+
+.login-form {
+    margin: 2.5rem 0rem;
+    background-color: var(--white);
+    padding: 5rem;
+    gap: 1rem;
+}
+
+.login-input {
+    width: 20rem;
+    padding: 0.5rem;
+}
+
+.signup {
+    color: var(--black);
+    margin-left: 2.75rem;
+}
+
+.signup-link {
+    color: var(--green-500);
+}
+
+.signup-link:hover {
+    color: var(--green-600);
+}
+
+.login-form .primary-btn {
+    background-color: var(--green-500);
+}
+
+.login-form .primary-btn:hover {
+    background-color: var(--green-600);
+}
+
 .container {
     margin-top: 2rem;
 }
+
+.signup-form {
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+.signup-input {
+    border-radius: 5px;
+    padding: 7px;
+    width: 18rem;
+}
+
+.signup-form .primary-btn {
+    background-color: var(--green-500);
+}
+
+.signup-form .primary-btn:hover {
+    background-color: var(--green-600);
+}
+
 
 input[type="checkbox"] {
     width: max-content;
