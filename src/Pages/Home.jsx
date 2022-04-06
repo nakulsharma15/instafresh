@@ -1,7 +1,14 @@
-export default function Home() {
+import {Banner , Categories , Footer , Header } from "../Components/index.js";
 
-    return (
-        <>
-            <h1>This is Home</h1>
-        </>)
+export default function Home () {
+
+return (<>
+    <div className="flex-column" style={{minHeight: "100vh"}}>
+    <Header />
+     <Banner />
+     <Categories />
+     <Footer />
+    </div>
+     
+</>);
 }

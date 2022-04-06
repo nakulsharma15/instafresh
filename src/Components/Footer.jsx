@@ -1,6 +1,13 @@
+import "./Styles/Footer.css";
+
 export default function Footer() {
 
-    return(<div>
-        <h1>This is Footer</h1>
-    </div>)
+
+    return (
+        <>
+           <footer className="footer content-center">
+               <h2>Made with love by Nakul Sharma</h2>
+           </footer>
+        </>
+    );
 }

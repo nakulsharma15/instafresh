@@ -1,0 +1,12 @@
+@import url("https://altur-ui.netlify.app/stylesheets/main.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://pro.fontawesome.com/releases/v5.10.0/css/all.css");
+
+:root {
+    --insta-yellow: #ffe341;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
