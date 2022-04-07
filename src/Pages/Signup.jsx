@@ -3,7 +3,7 @@ import { Header , Footer } from "../Components/index.js";
 
 export default function Signup() {
 
-    return (<>
+    return (<div className="flex-column stick-bottom">
         <Header />
         <div className="container flex-center-column">
 
@@ -39,5 +39,5 @@ export default function Signup() {
 
         </div>
         <Footer />
-    </>)
+    </div>)
 }

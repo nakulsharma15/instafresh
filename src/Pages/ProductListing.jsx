@@ -8,7 +8,7 @@ export default function ProductListing() {
 
     const { filteredProductList } = useFilter();
 
-    return (<div className="flex-column min-height">
+    return (<div className="flex-column stick-bottom">
 
         <Header />
         <div className="productList-header flex-sb">
@@ -21,9 +21,12 @@ export default function ProductListing() {
         </div>
 
         <div className="product-list flex-row">
+            <div className="filter-div">
             <Filter />
+            </div>
+            
             <div className="products flex-sp-ev">
-                {(filteredProductList.length !== 0) ? filteredProductList.map((item) => <Card Item={item} />) : <h1>Sorry ,no items found :(</h1>}
+                {(filteredProductList.length !== 0) ? filteredProductList.map((item) => <div key={item._id}><Card Item={item} /></div>) : <h1>Sorry ,no items found :(</h1>}
             </div>
         </div>
 
