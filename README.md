@@ -1,8 +1,8 @@
-<h1 align="center">
+<h1>
    InstaFresh
 </h1>
 
-<p align="center">
+<p>
     InstaFresh is an E-Commerce project to cater all your grocery needs. Find best discounts on products and get them delivered at your doorstep under 10 minutes.
   <br>
   <br>
