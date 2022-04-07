@@ -23,6 +23,7 @@ Checkout the live website here: [instafresh](https://instafresh.netlify.app/)
 
 ## Built with
 
+
 - React JS 
 - Altur-UI Component Library
 - React Router v6
@@ -30,5 +31,7 @@ Checkout the live website here: [instafresh](https://instafresh.netlify.app/)
 
 ## Live Demo
 
-![enter image description here](https://github.com/nakulsharma15/Assets/blob/main/instafresh-demo.gif)
+https://user-images.githubusercontent.com/88782512/162242971-5ea8b3db-c7e1-4f3e-b14b-45a2b01feb4a.mp4
+
+
 
