@@ -9,7 +9,7 @@
     height: fit-content;
     background-color: var(--white);
     gap: 1.5rem;
-    max-width: 20%;
+    width: 100%;
 }
 
 .category-header {

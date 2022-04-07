@@ -5,8 +5,9 @@ export default function Footer() {
     return (
         <>
            <footer className="footer content-center">
-               <h2>Made with love by Nakul Sharma</h2>
+               <h2> <a href="https://www.linkedin.com/in/nakulsharma15" target="_blank">Made with love by Nakul Sharma</a></h2>
            </footer>
         </>
     );
 }
+

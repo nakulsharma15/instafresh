@@ -41,20 +41,20 @@ export default function CartCard({ Item }) {
 
 
     return (<>
-        <div class="card horizontal-card cart-horz-card  card-with-badge">
-            <div class="h-card-header">
-                <div class="h-card-img">
-                    <img class="h-card-img" src={Item.imageUrl} alt="Product" />
+        <div className="card horizontal-card cart-horz-card  card-with-badge">
+            <div className="h-card-header">
+                <div className="h-card-img">
+                    <img className="h-card-img" src={Item.imageUrl} alt="Product" />
                 </div>
-                <div class="card-title">
-                    <h3 class="text-l">{Item.name} </h3>
+                <div className="card-title">
+                    <h3 className="text-l">{Item.name} </h3>
                     <div className="product-info">
-                        <p>₹{Item.price}  {!(Item.discount === 0) ? <s class="text-s">₹{Item.prevPrice}</s> : <s></s>}<span className="item-qty">({Item.quantity})</span></p>
+                        <p>₹{Item.price}  {!(Item.discount === 0) ? <s className="text-s">₹{Item.prevPrice}</s> : <s></s>}<span className="item-qty">({Item.quantity})</span></p>
                     </div>
 
-                    <div class="cart-product-info flex-sb">
-                        <div class="text-m product-rating">
-                            <i class="fas fa-star"></i>
+                    <div className="cart-product-info flex-sb">
+                        <div className="text-m product-rating">
+                            <i className="fas fa-star"></i>
                             {Item.rating}
                         </div>
 

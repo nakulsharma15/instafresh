@@ -18,7 +18,7 @@ export default function Wishlist() {
 
             <h2>You don't have any items in your wishlist</h2><button className="redirect-button"><Link to="/productlisting">start shopping</Link></button></div> :
 
-            <div className="products wishlist-products flex-sp-ev">{wishlist.map((Item) => <WishlistCard Item={Item} />)}</div>}
+            <div className="products wishlist-products flex-sp-ev">{wishlist.map((Item) => <div key={Item._id}><WishlistCard Item={Item} /></div>)}</div>}
 
         <Footer />
 
