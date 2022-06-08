@@ -1,11 +1,18 @@
 import "./Styles/Header.css";
 import { Link } from "react-router-dom";
 import { useUserDetail } from "../Context/UserDetailContext";
+import { useAuth } from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 export default function Header() {
 
     const {userDetail} = useUserDetail();
     const { wishlist , cart } = userDetail;
+    const { isLoggedIn } = useAuth();
+
+    const navigateHandler = () => {
+        return isLoggedIn ? null : toast('You need to login to continue!') ;
+    }
 
     return (
         <>
@@ -29,9 +36,9 @@ export default function Header() {
                         <Link to="/login" style={{color:"black"}} className="log-btn">Login</Link>
                     </div>
 
-                    <Link to="/cart" className="text-m cart-btn" >Cart | <span>{cart.length}</span></Link>
+                    <Link to="/cart" className="text-m cart-btn" onClick={navigateHandler}>Cart | <span>{cart.length}</span></Link>
 
-                    <Link to="/wishlist" className="text-m wishlist-btn"> Wishlist | <span>{wishlist.length}</span></Link>
+                    <Link to="/wishlist" className="text-m wishlist-btn" onClick={navigateHandler}> Wishlist | <span>{wishlist.length}</span></Link>
                    
                 </div>
             </div>      
