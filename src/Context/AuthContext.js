@@ -10,8 +10,9 @@ const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const token = localStorage.getItem("Token");
   const [userDetails, setUserDetails] = useState({
-    cart: [],
-    wishlist: []
+    cartList: [],
+    wishList: [],
+    firstName: "",
   });
 
   useEffect(() => {
