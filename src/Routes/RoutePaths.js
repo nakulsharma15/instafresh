@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Home, Login, ProductListing, Signup,Wishlist,Cart,MockMan,NoMatch } from "../Pages/index";
+import RequireAuth from "../utils/requiresAuth";
 
 function RoutePaths () {
 
@@ -9,8 +10,8 @@ function RoutePaths () {
         <Route path="/productlisting" element={<ProductListing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<RequireAuth><Wishlist /></RequireAuth>} />
+        <Route path="/cart" element={<RequireAuth><Cart /></RequireAuth>} />
         <Route path="/mock" element={<MockMan />} />
         <Route path="*" element={<NoMatch />}/>
         </Routes>
