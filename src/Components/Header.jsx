@@ -1,7 +1,7 @@
 import "./Styles/Header.css";
 import { Link } from "react-router-dom";
 import { useUserDetail } from "../Context/UserDetailContext";
-import {useAuth} from "../Context/AuthContext";
+import { useAuth } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 
 export default function Header() {
@@ -22,16 +22,14 @@ export default function Header() {
         <>
             <nav>
                 <div className="nav-am flex-center-sb">
-                    <Link className="logo" to="/"><h1 className="text-xl">Insta<span style={{ color: "var(--insta-yellow)" }}>Fresh</span></h1></Link>
+
+                    <div className="flex-sp-ev flex-align-center header-logo-div">
+
+                        <Link className="logo" to="/"><h1 className="text-xl">Insta<span style={{ color: "var(--insta-yellow)" }}>Fresh</span></h1></Link>
 
 
-                    <h3 className="delivery-time">delivery in 9 minutes</h3>
-
-                    <div className="search_bm">
-                        <input style={{ borderColor: "black" }} className="text-m search-bar" placeholder="Search" type="search" />
-                        <i className="search-icon fas fa-search"></i>
+                        <h3 className="delivery-time">delivery in 9 minutes</h3>
                     </div>
-
 
 
                     <div style={{ color: "black" }} className="ecom-icon flex-align-center">
