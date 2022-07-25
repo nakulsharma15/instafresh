@@ -27,12 +27,13 @@ export default function Login() {
         const { foundUser } = data;
         dispatchUser({ type: "LOGIN_USER", payload: foundUser });
         localStorage.setItem("Token", data.encodedToken);
-        toast.success("You're successfully logged in")
+        toast.success("You're successfully logged in");
         navigate(location.state?.from?.pathname === undefined ? "/" : location.state?.from?.pathname, { replace: true });
       }
       else {
         if (response.status === 404)
           console.log("Error 404");
+          toast.error("Email not found");
       }
     } catch (error) {
       toast.error("Something went wrong, Please try again in some time");
