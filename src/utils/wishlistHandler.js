@@ -23,7 +23,7 @@ const addToWishlist = async (product, dispatchUser) => {
     }
 };
 
-const removeFromWishlist = async (product, isLoggedIn, dispatchUser) => {
+const removeFromWishlist = async (product, dispatchUser) => {
     try {
         const res = await axios.delete(`/api/user/wishlist/${product._id}`, {
             headers: {
@@ -33,7 +33,7 @@ const removeFromWishlist = async (product, isLoggedIn, dispatchUser) => {
         if (res.status === 200 || res.status === 201) {
             const { wishlist } = res.data;
             dispatchUser({ type: "UPDATE_WISHLIST", payload: wishlist })
-            toast.success("Added to Wishlist");
+            toast.success("Removed from Wishlist");
         }
     } catch (err) {
         toast.error("Something went wrong, Please try again");

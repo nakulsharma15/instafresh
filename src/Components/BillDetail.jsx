@@ -1,9 +1,13 @@
 import "./Styles/BillDetail.css";
 import { useAuth } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function BillDetail() {
 
-    const { userDetails } = useAuth();
+    const { userDetails, dispatchUser } = useAuth();
+
+    const navigate = useNavigate();
 
     const { cartList } = userDetails;
 
@@ -14,6 +18,17 @@ export default function BillDetail() {
     const mrp = cartList.reduce((acc, curr) => { return acc + curr.qty * curr.price }, 0);
 
     const billTotal = mrp + 9;
+
+    const placeOrderHandler = () => {
+
+        dispatchUser({ type: "UPDATE_CART", payload: [] });
+        toast('Congratulations! Your order has been placed.',
+            {
+                icon: '🥳'
+            }
+        );
+        navigate("/");
+    }
 
     return (
         <div>
@@ -48,7 +63,7 @@ export default function BillDetail() {
                 </div>
 
                 <div className="content-center">
-                    <button className="buy-btn btn primary-btn icon-btn order-btn"> Place Order</button>
+                    <button className="buy-btn btn primary-btn icon-btn order-btn" onClick={placeOrderHandler}> Place Order</button>
                 </div>
             </div>
 

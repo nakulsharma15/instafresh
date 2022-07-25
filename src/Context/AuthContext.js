@@ -12,8 +12,7 @@ const AuthProvider = ({ children }) => {
   const token = localStorage.getItem("Token");
   const [userDetails, dispatchUser] = useReducer(userReducer, {
     cartList: [],
-    wishList: [],
-    firstName: ""
+    wishList: []
 })
 
   useEffect(() => {

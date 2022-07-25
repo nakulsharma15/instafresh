@@ -54,6 +54,8 @@ body {
 .redirect-button {
     padding: 0.5rem 1rem;
     background-color: var(--green-400);
+    color: var(--white);
+    font-size: 1rem;
     border-color: transparent;
  }
 

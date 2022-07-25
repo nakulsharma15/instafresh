@@ -1,26 +1,24 @@
 import "./Styles/Header.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useUserDetail } from "../Context/UserDetailContext";
+import { Link } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
 
 export default function Header() {
 
     const { userDetails } = useAuth();
     const { wishList, cartList } = userDetails;
-    const { isLoggedIn, setIsLoggedIn, logoutHandler } = useAuth();
-    const navigate = useNavigate();
-
-    const navigateHandler = () => {
-        return isLoggedIn ? null : toast('You need to login to continue!',
-            {
-                icon: '⚠️'
-            }
-        );
-    }
+    const { isLoggedIn, logoutHandler } = useAuth();
 
     const token = localStorage.getItem("Token");
+
+    const navigateHandler = () => {
+
+        return isLoggedIn ? null :  toast('You need to login to continue!',
+        {
+          icon: '⚠️',
+        }
+      ) ;
+    }
 
     return (
         <>

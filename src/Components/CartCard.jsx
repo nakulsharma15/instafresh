@@ -7,7 +7,7 @@ export default function CartCard({ product }) {
 
     const { userDetails, dispatchUser } = useAuth();
 
-    const { cartList, wishList } = userDetails;
+    const { wishList } = userDetails;
 
     const decreaseCount = (product) => {
         if (product?.qty < 2) {
@@ -28,7 +28,13 @@ export default function CartCard({ product }) {
     }
 
     const moveToWishlistHandler = (product) => {
-        addToWishlist(product, dispatchUser);
+
+        const findProductInWishlist = wishList.find((item) => item._id === product._id);
+
+        if (!findProductInWishlist) {
+            addToWishlist(product, dispatchUser);
+        }
+
         removeFromCart(product, dispatchUser);
     }
 
