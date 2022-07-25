@@ -1,14 +1,16 @@
 import "./Styles/Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserDetail } from "../Context/UserDetailContext";
 import { useAuth } from "../Context/AuthContext";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 export default function Header() {
 
-    const { userDetail } = useUserDetail();
-    const { wishlist, cart } = userDetail;
-    const { isLoggedIn } = useAuth();
+    const { userDetails } = useAuth();
+    const { wishList, cartList } = userDetails;
+    const { isLoggedIn, setIsLoggedIn, logoutHandler } = useAuth();
+    const navigate = useNavigate();
 
     const navigateHandler = () => {
         return isLoggedIn ? null : toast('You need to login to continue!',
@@ -17,6 +19,8 @@ export default function Header() {
             }
         );
     }
+
+    const token = localStorage.getItem("Token");
 
     return (
         <>
@@ -35,20 +39,17 @@ export default function Header() {
                     <div style={{ color: "black" }} className="ecom-icon flex-align-center">
 
                         <div className="links text-m">
-                            <Link to="/login" style={{ color: "black" }} className="log-btn">Login</Link>
+
+                            {isLoggedIn ? <div onClick={() => logoutHandler()} style={{ color: "black" }} className="log-btn"> Logout</div> : <Link to="/login" style={{ color: "black" }} className="log-btn">Login</Link>}
+
+
                         </div>
 
-                        <Link to="/cart" className="text-m cart-btn" onClick={navigateHandler}>Cart | <span>{cart.length}</span></Link>
+                        <Link to="/cart" className="text-m cart-btn" onClick={navigateHandler}>Cart | <span>{cartList?.length}</span></Link>
 
-                        <Link to="/wishlist" className="text-m wishlist-btn" onClick={navigateHandler}> Wishlist | <span>{wishlist.length}</span></Link>
+                        <Link to="/wishlist" className="text-m wishlist-btn" onClick={navigateHandler}> Wishlist | <span>{wishList?.length}</span></Link>
 
                     </div>
-                </div>
-
-
-                <div className="search_am">
-                    <input className="text-m search-bar" placeholder="Search" type="search" />
-                    <i className="search-icon fas fa-search"></i>
                 </div>
 
             </nav>

@@ -1,19 +1,20 @@
-import { useContext, createContext, useState, useEffect } from "react";
+import { useContext, createContext, useReducer, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import userReducer from "./userReducer";
 
 const AuthContext = createContext();
 
 const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const token = localStorage.getItem("Token");
-  const [userDetails, setUserDetails] = useState({
+  const [userDetails, dispatchUser] = useReducer(userReducer, {
     cartList: [],
     wishList: [],
-    firstName: "",
-  });
+    firstName: ""
+})
 
   useEffect(() => {
     if (token) {
@@ -33,7 +34,7 @@ const AuthProvider = ({ children }) => {
         isLoggedIn,
         setIsLoggedIn,
         userDetails,
-        setUserDetails,
+        dispatchUser,
         logoutHandler,
       }}
     >

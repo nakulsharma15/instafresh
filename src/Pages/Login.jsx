@@ -1,12 +1,41 @@
 import { Header , Footer} from "../Components/index.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useAuth } from "../Context/AuthContext.js";
+import axios from "axios";
 
 export default function Login() {
 
-    const loginHandler = () => {
-        return toast.success("hi");
+    const testCredentials = {
+        email: "adarshbalika@gmail.com",
+        password: "adarshbalika",
     }
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const {dispatchUser, userDetails, setIsLoggedIn} = useAuth();
+
+    const handleLogin = async(credentials) => {
+        try {
+          const response = await axios.post("/api/auth/login",credentials);
+          if(response.status===200 || response.status===201){
+            setIsLoggedIn(true);
+          const {data} = response;
+          const {foundUser} = data;
+          dispatchUser({type:"LOGIN_USER", payload: foundUser})
+          localStorage.setItem("Token",data.encodedToken)
+          console.log({userDetails});
+          navigate(location.state?.from?.pathname === undefined ? "/" :location.state?.from?.pathname, {replace: true} );
+        }
+          else{
+            if(response.status===404)
+            console.log("Error aaya 404");
+          }
+        } catch (error) {
+          console.log("We couldn't sign you in", error);
+        }
+      }
 
     return (<div className="flex-column stick-bottom">
 
@@ -32,7 +61,7 @@ export default function Login() {
                     <span className="signup">Don't have an account?, <Link className="signup-link" to="/signup">Signup</Link></span>
                 </div>
 
-                <Link to="/"><button className="btn primary-btn" type="submit" onClick={loginHandler}>Login</button></Link>
+                <div> <button className="btn primary-btn" type="submit" onClick={()=> handleLogin(testCredentials)}>Login</button></div>
 
             </div>
 

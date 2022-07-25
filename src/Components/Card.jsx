@@ -1,10 +1,14 @@
 import "./Styles/Card.css";
 import { useUserDetail } from "../Context/UserDetailContext";
+import { useAuth } from "../Context/AuthContext";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { addToCart } from "../utils/cartHandler"
 
 export default function Card({ Item }) {
 
     const { userDetail, setUserDetail } = useUserDetail();
+    const { isLoggedIn, dispatchUser } = useAuth();
 
     const { wishlist, cart } = userDetail;
 
@@ -22,7 +26,11 @@ export default function Card({ Item }) {
     }
 
     const addToCartHandler = (Item) => {
-        setUserDetail({ ...userDetail, cart: [...cart, { ...Item, count: 1 }] });
+        isLoggedIn ? addToCart({product: Item}, dispatchUser) : toast('You need to login to continue!',
+            {
+                icon: '⚠️'
+            }
+        );;
     }
 
 
