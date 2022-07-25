@@ -1,42 +1,35 @@
-import { useUserDetail } from "../Context/UserDetailContext";
 import "./Styles/CartCard.css";
+import { useAuth } from "../Context/AuthContext";
+import { handleIncrementDecrement, removeFromCart } from "../utils/cartHandler";
+import { addToWishlist } from "../utils/wishlistHandler";
 
-export default function CartCard({ Item }) {
+export default function CartCard({ product }) {
 
-    const {userDetail , setUserDetail } = useUserDetail();
+    const { userDetails, dispatchUser } = useAuth();
 
-    const {cart , wishlist} = userDetail;
+    const { cartList, wishList } = userDetails;
 
-    const decreaseCount = (Item) => {
-        if(Item.count === 1) {
-            const updatedCart = cart.filter((item) => item._id !== Item._id);
-            setUserDetail({...userDetail , cart: updatedCart});
+    const decreaseCount = (product) => {
+        if (product?.qty < 2) {
+            removeFromCart(product, dispatchUser);
         }
-
         else {
-           const updatedCart = cart.map((item) => (item._id === Item._id) ? {...item , count: item.count - 1} : item);
-           setUserDetail({...userDetail , cart: updatedCart})
+            handleIncrementDecrement(product, dispatchUser, "decrement")
         }
     }
 
-    const increaseCount = (Item) => {
-        const updatedCart = cart.map((item) => (item._id === Item._id) ? {...item , count: item.count + 1} : item);
-           setUserDetail({...userDetail , cart: updatedCart})
+    const increaseCount = (product) => {
+
+        handleIncrementDecrement(product, dispatchUser, "increment");
     }
 
-    const removeFromCartHandler = (Item) => {
-        const updatedCart = cart.filter((item) => item._id !== Item._id)
-
-        setUserDetail({...userDetail , cart:updatedCart});
+    const removeFromCartHandler = (product) => {
+        removeFromCart(product, dispatchUser);
     }
 
-    const moveToWishlistHandler = (Item) => {
-
-        const updatedCart = cart.filter((item) => item._id !== Item._id);
-
-        const findProductInWishlist = wishlist.find((item) => item._id === Item._id);
-
-        (findProductInWishlist) ? setUserDetail({...userDetail , cart: updatedCart}) : setUserDetail({...userDetail , wishlist: [...wishlist , Item] , cart: updatedCart})
+    const moveToWishlistHandler = (product) => {
+        addToWishlist(product, dispatchUser);
+        removeFromCart(product, dispatchUser);
     }
 
 
@@ -44,30 +37,30 @@ export default function CartCard({ Item }) {
         <div className="card horizontal-card cart-horz-card  card-with-badge">
             <div className="h-card-header">
                 <div className="h-card-img">
-                    <img className="h-card-img" src={Item.imageUrl} alt="Product" />
+                    <img className="h-card-img" src={product.imageUrl} alt="Product" />
                 </div>
                 <div className="card-title">
-                    <h3 className="text-l">{Item.name} </h3>
+                    <h3 className="text-l">{product.name} </h3>
                     <div className="product-info">
-                        <p>₹{Item.price}  {!(Item.discount === 0) ? <s className="text-s">₹{Item.prevPrice}</s> : <s></s>}<span className="item-qty">({Item.quantity})</span></p>
+                        <p>₹{product.price}  {!(product.discount === 0) ? <s className="text-s">₹{product.prevPrice}</s> : <s></s>}<span className="item-qty">({product.quantity})</span></p>
                     </div>
 
                     <div className="cart-product-info flex-sb">
                         <div className="text-m product-rating">
                             <i className="fas fa-star"></i>
-                            {Item.rating}
+                            {product.rating}
                         </div>
 
                         <div className="product-qty">
-                            <p><button onClick={() => decreaseCount(Item)}>-</button><span>{Item.count}</span><button onClick={() => increaseCount(Item)}>+</button></p>
+                            <p><button onClick={() => decreaseCount(product)}>-</button><span>{product.qty}</span><button onClick={() => increaseCount(product)}>+</button></p>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <div class="card-footer">
-                <button class="btn icon-btn remove-from-cart-btn text-m" onClick={() => removeFromCartHandler(Item)}>Remove From Cart</button>
-                <button class="cart-btn btn icon-btn outline-secondary-btn" onClick={() => moveToWishlistHandler(Item)}>Move to Wishlist</button>
+            <div className="card-footer">
+                <button className="btn icon-btn remove-from-cart-btn text-m" onClick={() => removeFromCartHandler(product)}>Remove From Cart</button>
+                <button className="cart-btn btn icon-btn outline-secondary-btn" onClick={() => moveToWishlistHandler(product)}>Move to Wishlist</button>
             </div>
         </div>
 

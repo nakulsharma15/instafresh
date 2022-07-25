@@ -8,7 +8,6 @@ export default function Cart() {
     const { userDetails } = useAuth();
 
     const { cartList } = userDetails;
-    console.log(cartList);
 
 
     return (<div className="flex-column stick-bottom">
@@ -18,7 +17,7 @@ export default function Cart() {
         {(cartList?.length === 0) ? <div><h2>You don't have any items in your cart</h2><button className="redirect-button"><Link to="/productlisting">start shopping</Link></button></div> : 
         <div className="flex-sp-ev" style={{flexWrap:"wrap"}}>
             <div >
-            {cartList?.map((Item) => <div key={Item.product._id}><CartCard Item={Item.product}/></div> )} 
+            {cartList?.map((Item) => <div key={Item._id}><CartCard product={Item}/></div> )} 
             </div>
             
             <BillDetail />

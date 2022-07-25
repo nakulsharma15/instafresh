@@ -14,12 +14,12 @@ const addToCart = async (product, dispatchUser) => {
         );
         if (res.status === 200 || res.status === 201) {
             const { cart } = res.data;
-            toast.success("Added to Cart" );
             dispatchUser({ type: "UPDATE_CART", payload: cart })
+            toast.success("Added to Cart" );
         }
     } catch (err) {
-        console.log("Something bad happened", err);
-        toast.error("Couldn't complete request");
+        toast.error("Something went wrong, Please try again");
+        console.log("Error:", err);
     }
 };
 
@@ -33,12 +33,12 @@ const removeFromCart = async (product, dispatchUser) => {
         });
         if (res.status === 200 || res.status === 201) {
             const { cart } = res.data;
-            toast.success("Removed from Cart" );
             dispatchUser({ type: "UPDATE_CART", payload: cart })
+            toast.success("Removed from Cart" );
         }
     } catch (err) {
-        console.log("oops something bad happened", err);
-        toast.error( "Couldn't complete request");
+        toast.error( "Something went wrong, Please try again");
+        console.log("Error:", err);
     }
 
 };
@@ -58,12 +58,12 @@ const handleIncrementDecrement = async (product, dispatchUser, type) => {
             });
         if (res.status === 200 || res.status === 201) {
             const { cart } = res.data;
-            toast.success("Cart Updated");
             dispatchUser({ type: "UPDATE_CART", payload: cart })
+            toast.success("Cart Updated");
         }
     } catch (err) {
-        console.log("oops something bad happened", err);
-        toast.error( "Couldn't complete request");
+        console.log("Error:", err);
+        toast.error( "Something went wrong, Please try again");
     }
 }
 

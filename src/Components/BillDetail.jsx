@@ -1,17 +1,17 @@
-import { useUserDetail } from "../Context/UserDetailContext";
-import "./Styles/BillDetail.css"
+import "./Styles/BillDetail.css";
+import { useAuth } from "../Context/AuthContext";
 
 export default function BillDetail() {
 
-    const { userDetail } = useUserDetail();
+    const { userDetails } = useAuth();
 
-    const { cart } = userDetail;
+    const { cartList } = userDetails;
 
-    const originalPriceList = cart.map((item) => (item.prevPrice === 0) ? { ...item, prevPrice: item.price } : item);
+    const originalPriceList = cartList.map((item) => (item.prevPrice === 0) ? { ...item, prevPrice: item.price } : item);
 
-    const originalPrice = originalPriceList.reduce((acc, curr) => { return acc + curr.count * curr.prevPrice }, 0);
+    const originalPrice = originalPriceList.reduce((acc, curr) => { return acc + curr.qty * curr.prevPrice }, 0);
 
-    const mrp = cart.reduce((acc, curr) => { return acc + curr.count * curr.price }, 0);
+    const mrp = cartList.reduce((acc, curr) => { return acc + curr.qty * curr.price }, 0);
 
     const billTotal = mrp + 9;
 

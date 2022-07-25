@@ -26,7 +26,7 @@ export default function Card({ Item }) {
     }
 
     const addToCartHandler = (Item) => {
-        isLoggedIn ? addToCart({product: Item}, dispatchUser) : toast('You need to login to continue!',
+        isLoggedIn ? addToCart( Item, dispatchUser) : toast('You need to login to continue!',
             {
                 icon: '⚠️'
             }

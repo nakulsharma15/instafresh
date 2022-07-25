@@ -1,8 +1,8 @@
+import "../App.css";
 import { Header, Footer, WishlistCard } from "../Components/index.js";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext.js";
 
-import "../App.css";
 
 export default function Wishlist() {
 
