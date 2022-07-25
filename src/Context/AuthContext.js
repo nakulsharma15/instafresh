@@ -22,6 +22,8 @@ const AuthProvider = ({ children }) => {
   }, [isLoggedIn]);
 
   const logoutHandler = () => {
+    dispatchUser({ type: "UPDATE_CART", payload: [] })
+    dispatchUser({ type: "UPDATE_WISHLIST", payload: [] })
     localStorage.removeItem("Token");
     setIsLoggedIn(false);
     navigate("/");

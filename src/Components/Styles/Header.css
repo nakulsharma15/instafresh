@@ -114,7 +114,9 @@ nav .search-bar {
 .cart-btn:hover {
     background-color: var(--yellow-300);
 }
-
+.links:hover {
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 850px) {
 
