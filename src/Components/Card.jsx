@@ -1,28 +1,47 @@
 import "./Styles/Card.css";
-import { useUserDetail } from "../Context/UserDetailContext";
+import { useAuth } from "../Context/AuthContext";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { addToCart } from "../utils/cartHandler";
+import { addToWishlist, removeFromWishlist } from "../utils/wishlistHandler";
 
 export default function Card({ Item }) {
 
-    const { userDetail, setUserDetail } = useUserDetail();
+    const { isLoggedIn, userDetails, dispatchUser } = useAuth();
 
-    const { wishlist, cart } = userDetail;
+    const { wishList, cartList } = userDetails;
 
     const addToWishlistHandler = (Item) => {
-        const findProductInWishlist = wishlist.find((item) => item._id === Item._id);
 
-        if (findProductInWishlist) {
-            const updatedWishlist = wishlist.filter((item) => item._id !== Item._id);
-            setUserDetail({ ...userDetail, wishlist: updatedWishlist });
+        if (isLoggedIn) {
+
+            const findProductInWishlist = wishList.find((item) => item._id === Item._id);
+
+            if (findProductInWishlist) {
+                removeFromWishlist(Item, dispatchUser);
+            }
+
+            else {
+                addToWishlist(Item, dispatchUser);
+            }
+
         }
-
         else {
-            setUserDetail({ ...userDetail, wishlist: [...wishlist, Item] })
+            toast('You need to login to continue!',
+                {
+                    icon: '⚠️'
+                }
+            );
         }
+
     }
 
     const addToCartHandler = (Item) => {
-        setUserDetail({ ...userDetail, cart: [...cart, { ...Item, count: 1 }] });
+        isLoggedIn ? addToCart(Item, dispatchUser) : toast('You need to login to continue!',
+            {
+                icon: '⚠️'
+            }
+        );
     }
 
 
@@ -52,12 +71,12 @@ export default function Card({ Item }) {
                 </div>
 
                 <div className="card-footer">
-                    {(cart.find((item) => item._id === Item._id)) ?
+                    {(cartList.find((item) => item._id === Item._id)) ?
                         <Link to="/cart"><button className="add-to-cart-btn btn icon-btn"> Go to Cart</button></Link> :
                         <button className="add-to-cart-btn btn icon-btn" onClick={() => addToCartHandler(Item)}> Add to Cart</button>
                     }
 
-                    <button className="card-icon" onClick={() => addToWishlistHandler(Item)}> {(wishlist.find((item) => item._id === Item._id)) ?
+                    <button className="card-icon" onClick={() => addToWishlistHandler(Item)}> {(wishList.find((item) => item._id === Item._id)) ?
                         <i className="fas fa-heart"></i> :
                         <i className="far fa-heart"></i>} </button>
                 </div>

@@ -5,6 +5,10 @@ nav {
     padding: 1rem 2rem;
 }
 
+.header-logo-div {
+    gap: 5rem;
+}
+
 .search_am {
     display: none;
 }
@@ -38,19 +42,6 @@ nav .search-bar {
     font-size: 1.5rem;
     color: black;
     margin: 0rem 1rem;
-}
-
-.search-bar {
-    padding: 4px 8px;
-    width: 15rem;
-    border-radius: 4px;
-    border-color: transparent;
-    margin-right: 0;
-}
-
-.search-icon {
-    padding: 0.5rem;
-    cursor: pointer;
 }
 
 .badge-val {
@@ -123,28 +114,8 @@ nav .search-bar {
 .cart-btn:hover {
     background-color: var(--yellow-300);
 }
-
-
-@media only screen and (max-width: 1170px) {
-    
-    .search_bm {
-        display: none;
-    }
-
-    .search_am {
-        display: block;
-        width: 100%;
-        display: inline-flex;
-        justify-content: center;
-        margin-bottom: 15px;
-       
-    }
-
-    .search_am input {
-        width: 90%;
-        border-color: black;
-    }
-
+.links:hover {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 850px) {

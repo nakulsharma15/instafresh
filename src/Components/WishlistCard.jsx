@@ -1,54 +1,57 @@
-import { useUserDetail } from "../Context/UserDetailContext";
 import "./Styles/WishlistCard.css";
+import { useAuth } from "../Context/AuthContext";
+import { removeFromWishlist } from "../utils/wishlistHandler";
+import { addToCart } from "../utils/cartHandler";
 
 export default function WishlistCard({ Item }) {
 
-    const { userDetail, setUserDetail } = useUserDetail();
+    const { userDetails, dispatchUser } = useAuth();
 
-    const { wishlist , cart } = userDetail;
+    const { cartList } = userDetails;
 
-    const removeHandler = (id) => {
-
-        const updatedWishlist = wishlist.filter((item) => item._id !== id);
-        setUserDetail({ ...userDetail, wishlist: updatedWishlist });
+    const removeHandler = () => {
+        removeFromWishlist(Item, dispatchUser);
     }
 
     const moveToCartHandler = (Item) => {
-        const updatedWishlist = wishlist.filter((item) => item._id !== Item._id);
 
-        const findProductInCart = cart.find((item) => item._id === Item._id);
+        const findProductInCart = cartList.find((item) => item._id === Item._id);
 
-        (findProductInCart) ? setUserDetail({ ...userDetail, wishlist: updatedWishlist}) : setUserDetail({ ...userDetail, wishlist: updatedWishlist , cart:[...cart , {...Item , count:1}]});
+        if (!findProductInCart) {
+            addToCart(Item, dispatchUser);
+        }
+
+        removeFromWishlist(Item, dispatchUser);
     }
 
     return (
         <>
-            <div class="instafresh-card card card-with-badge card-with-text-overlay card-with-dismiss">
-                <div class="card-img flex-justify-center">
-                    <img class="card-img flex-justify-center" src={Item.imageUrl} alt="Product" />
+            <div className="instafresh-card card card-with-badge card-with-text-overlay card-with-dismiss">
+                <div className="card-img flex-justify-center">
+                    <img className="card-img flex-justify-center" src={Item.imageUrl} alt="Product" />
                 </div>
-                <div class="card-title item-price-detail">
+                <div className="card-title item-price-detail">
                     <h3>{Item.name}</h3>
-                    <p>₹{Item.price}  {!(Item.discount === 0) ? <s class="text-s">₹{Item.prevPrice}</s> : null}</p>
+                    <p>₹{Item.price}  {!(Item.discount === 0) ? <s className="text-s">₹{Item.prevPrice}</s> : null}</p>
                 </div>
 
                 <div className="discount-badge">
-                    {!(Item.discount === 0) ? <div class="discount special-badge text-overlay">{Item.discount}% off</div> : null}
+                    {!(Item.discount === 0) ? <div className="discount special-badge text-overlay">{Item.discount}% off</div> : null}
                 </div>
 
-                <i onClick={() => removeHandler(Item._id)} class="text-overlay dismiss-icon far fa-times-circle delete-icon" ></i>
+                <i onClick={removeHandler} className="text-overlay dismiss-icon far fa-times-circle delete-icon" ></i>
 
 
-                <div class="card-info flex-sb-c">
+                <div className="card-info flex-sb-c">
                     {Item.quantity}
-                    <div class="badge-rating text-m product-rating">
-                        <i class="fas fa-star"></i>
+                    <div className="badge-rating text-m product-rating">
+                        <i className="fas fa-star"></i>
                         {Item.rating}
                     </div>
                 </div>
 
-                <div class="card-footer">
-                    <button class="add-to-cart-btn btn icon-btn" onClick={() => moveToCartHandler(Item)}> Move to Cart</button>
+                <div className="card-footer">
+                    <button className="add-to-cart-btn btn icon-btn" onClick={() => moveToCartHandler(Item)}> Move to Cart</button>
                 </div>
             </div>
         </>

@@ -1,19 +1,34 @@
-import { useUserDetail } from "../Context/UserDetailContext";
-import "./Styles/BillDetail.css"
+import "./Styles/BillDetail.css";
+import { useAuth } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function BillDetail() {
 
-    const { userDetail } = useUserDetail();
+    const { userDetails, dispatchUser } = useAuth();
 
-    const { cart } = userDetail;
+    const navigate = useNavigate();
 
-    const originalPriceList = cart.map((item) => (item.prevPrice === 0) ? { ...item, prevPrice: item.price } : item);
+    const { cartList } = userDetails;
 
-    const originalPrice = originalPriceList.reduce((acc, curr) => { return acc + curr.count * curr.prevPrice }, 0);
+    const originalPriceList = cartList.map((item) => (item.prevPrice === 0) ? { ...item, prevPrice: item.price } : item);
 
-    const mrp = cart.reduce((acc, curr) => { return acc + curr.count * curr.price }, 0);
+    const originalPrice = originalPriceList.reduce((acc, curr) => { return acc + curr.qty * curr.prevPrice }, 0);
+
+    const mrp = cartList.reduce((acc, curr) => { return acc + curr.qty * curr.price }, 0);
 
     const billTotal = mrp + 9;
+
+    const placeOrderHandler = () => {
+
+        dispatchUser({ type: "UPDATE_CART", payload: [] });
+        toast('Congratulations! Your order has been placed.',
+            {
+                icon: '🥳'
+            }
+        );
+        navigate("/");
+    }
 
     return (
         <div>
@@ -48,7 +63,7 @@ export default function BillDetail() {
                 </div>
 
                 <div className="content-center">
-                    <button className="buy-btn btn primary-btn icon-btn order-btn"> Place Order</button>
+                    <button className="buy-btn btn primary-btn icon-btn order-btn" onClick={placeOrderHandler}> Place Order</button>
                 </div>
             </div>
 

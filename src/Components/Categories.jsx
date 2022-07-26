@@ -27,9 +27,9 @@ export default function Categories() {
 
                 <div className="categoryDiv">
                     {loading ? <Loader /> : categorylist.map(category => {
-                        return (<div className="category flex-justify-align" key={category._id}>
+                        return (<div className="category flex-justify-align" key={category._id}  onClick={() => categoryHandler(category.categoryName)}>
                             
-                            <h3 onClick={() => categoryHandler(category.categoryName)}>{category.categoryName}</h3>
+                            <h3>{category.categoryName}</h3>
 
                         </div>)
                     })}
