@@ -11,7 +11,7 @@
 
 ## Live Deployment
 
-Checkout the live website here: [instafresh](https://instafresh.netlify.app/)
+Checkout the live website here: [instafresh](https://instafresh.vercel.app/)
 
 ## Features
 
