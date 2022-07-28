@@ -15,6 +15,12 @@ const rating = ({rating},array) => {
   return rating===0 ? temp : temp.filter((prod) => prod.rating >= rating);
 }
 
+
+const price = ({price},array) => {
+    const temp = [...array];
+  return price===0 ? temp : temp.filter((prod) => prod.price >= price);
+}
+
 const applyCategories = ({category},array)=>{
     if ( category.length===0){
         return array;
@@ -29,5 +35,5 @@ const applyCategories = ({category},array)=>{
     },ProductList)
 }
 
-export const getFilteredProductList = (state,ProductList)=> applyFilters(state,sortby,rating,applyCategories)(ProductList)
+export const getFilteredProductList = (state,ProductList)=> applyFilters(state,sortby,rating,price,applyCategories)(ProductList)
 

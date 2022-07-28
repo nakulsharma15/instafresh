@@ -111,6 +111,34 @@ export default function Filter() {
                 </div>
             </div>
 
+            <div className="rating-filter">
+
+                <p className="category-header text-l bold">Price: {state.price}<span className="text-m"> and above</span></p>
+
+                <div>
+                    <label>0+</label>
+                    <input
+                        type="range"
+                        min="0"
+                        max="400"
+                        value={state.price}
+                        step="100"
+                        list="tickmark"
+                        onChange={(e) =>
+                            dispatch({ type: "PRICE", payload: e.target.value })
+                        }
+                    />
+                    <datalist id="tickmark">
+                        <option value="0"></option>
+                        <option value="100"></option>
+                        <option value="200"></option>
+                        <option value="300"></option>
+                        <option value="400"></option>
+                    </datalist>
+                    <label>400+</label>
+                </div>
+            </div>
+
         </aside>
     </>)
 
