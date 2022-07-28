@@ -20,67 +20,61 @@ export default function BillDetail() {
 
     const billTotal = mrp + 9;
 
-    const placeOrderHandler = () => {
-
-        dispatchUser({ type: "UPDATE_CART", payload: [] });
-        toast('Congratulations! Your order has been placed.',
-            {
-                icon: '🥳'
-            }
-        );
-        navigate("/");
-    }
 
     const loadScript = async (src) => {
         return new Promise((resolve) => {
-          const script = document.createElement("script");
-          script.src = src;
-          script.onload = () => {
-            resolve(true);
-          };
-          script.onerror = () => {
-            resolve(false);
-          };
-          document.body.appendChild(script);
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
         });
-      };
+    };
 
     const handlePayment = async () => {
 
         const res = await loadScript(
-          "https://checkout.razorpay.com/v1/checkout.js"
+            "https://checkout.razorpay.com/v1/checkout.js"
         );
-    
+
         if (!res) {
-          toast.error("Failed to initiate payment, please try again.");
+            toast.error("Failed to initiate payment, please try again.");
         }
-    
+
         const options = {
-          key: process.env.REACT_APP_RZP_KEY_ID,
-          amount: billTotal * 100,
-          currency: "INR",
-          name: "Instafresh",
-          description: "Payment for your order",
-          handler: function (response) {
-            const order = {
-              paymentId: response?.razorpay_payment_id,
-            };
-            cartList?.map((product) => removeFromCartAfterPayment(product, dispatchUser));
-            toast.success(`🥳 Congratulations, Your order has been successfully placed!`);
-            navigate("/");
-          },
-          prefill: {
-            name: "Nakul Sharma",
-            email: "nakul.sharma@example.com",
-            contact: "9999999999",
-          },
-          theme: {
-            color: "#0C1D9D",
-          },
+            key: process.env.REACT_APP_RZP_KEY_ID,
+            amount: billTotal * 100,
+            currency: "INR",
+            name: "Instafresh",
+            description: "Payment for your order",
+            handler: function (response) {
+                const order = {
+                    paymentId: response?.razorpay_payment_id,
+                };
+                cartList?.map((product) => removeFromCartAfterPayment(product, dispatchUser));
+                toast('Congratulations! Your order has been placed.',
+                    {
+                        icon: '🥳'
+                    }
+                );
+                navigate("/");
+            },
+            prefill: {
+                name: "Nakul Sharma",
+                email: "nakul.sharma@example.com",
+                contact: "9999999999",
+            },
+            theme: {
+                color: "#0C1D9D",
+            },
         };
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
-      };
+    };
 
     return (
         <div>
