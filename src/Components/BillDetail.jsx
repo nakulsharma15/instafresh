@@ -2,6 +2,7 @@ import "./Styles/BillDetail.css";
 import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { removeFromCartAfterPayment } from "../utils/cartHandler";
 
 export default function BillDetail() {
 
@@ -19,16 +20,61 @@ export default function BillDetail() {
 
     const billTotal = mrp + 9;
 
-    const placeOrderHandler = () => {
 
-        dispatchUser({ type: "UPDATE_CART", payload: [] });
-        toast('Congratulations! Your order has been placed.',
-            {
-                icon: '🥳'
-            }
+    const loadScript = async (src) => {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
+        });
+    };
+
+    const handlePayment = async () => {
+
+        const res = await loadScript(
+            "https://checkout.razorpay.com/v1/checkout.js"
         );
-        navigate("/");
-    }
+
+        if (!res) {
+            toast.error("Failed to initiate payment, please try again.");
+        }
+
+        const options = {
+            key: process.env.REACT_APP_RZP_KEY_ID,
+            amount: billTotal * 100,
+            currency: "INR",
+            name: "Instafresh",
+            description: "Payment for your order",
+            handler: function (response) {
+                const order = {
+                    paymentId: response?.razorpay_payment_id,
+                };
+                cartList?.map((product) => removeFromCartAfterPayment(product, dispatchUser));
+                toast('Congratulations! Your order has been placed.',
+                    {
+                        icon: '🥳'
+                    }
+                );
+                navigate("/");
+            },
+            prefill: {
+                name: "Nakul Sharma",
+                email: "nakul.sharma@example.com",
+                contact: "9999999999",
+            },
+            theme: {
+                color: "#0C1D9D",
+            },
+        };
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+    };
 
     return (
         <div>
@@ -40,12 +86,6 @@ export default function BillDetail() {
                     <p>MRP:</p>
                     <p>₹{mrp}/-</p>
                 </div>
-
-                {(originalPrice - mrp !== 0) ? <div className="price-detail-section flex-sb discount">
-                    <p>Product Discount</p>
-                    <p>- ₹{originalPrice - mrp}/-</p>
-                </div> : null}
-
 
                 <div className="price-detail-section flex-sb">
                     <p>Packaging Charges</p>
@@ -63,7 +103,7 @@ export default function BillDetail() {
                 </div>
 
                 <div className="content-center">
-                    <button className="buy-btn btn primary-btn icon-btn order-btn" onClick={placeOrderHandler}> Place Order</button>
+                    <button className="buy-btn btn primary-btn icon-btn order-btn" onClick={handlePayment}> Place Order</button>
                 </div>
             </div>
 

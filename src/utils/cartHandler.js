@@ -43,6 +43,25 @@ const removeFromCart = async (product, dispatchUser) => {
 
 };
 
+const removeFromCartAfterPayment = async (product, dispatchUser) => {
+
+    try {
+        const res = await axios.delete(`/api/user/cart/${product._id}`, {
+            headers: {
+                authorization: localStorage.getItem("Token"),
+            },
+        });
+        if (res.status === 200 || res.status === 201) {
+            const { cart } = res.data;
+            dispatchUser({ type: "UPDATE_CART", payload: cart })
+        }
+    } catch (err) {
+        toast.error( "Something went wrong, Please try again");
+        console.log("Error:", err);
+    }
+
+};
+
 const handleIncrementDecrement = async (product, dispatchUser, type) => {
     try {
         const res = await axios.post(`/api/user/cart/${product._id}`,
@@ -67,4 +86,4 @@ const handleIncrementDecrement = async (product, dispatchUser, type) => {
     }
 }
 
-export { addToCart, removeFromCart, handleIncrementDecrement };
+export { addToCart, removeFromCart, removeFromCartAfterPayment, handleIncrementDecrement };
